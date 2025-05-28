@@ -1,4 +1,4 @@
-import { LoginResponse, MessagesResponse } from '@/types';
+import { LoginResponse } from '@/types';
 
 const API_BASE_URL = 'http://localhost:3333';
 
@@ -12,21 +12,22 @@ export const login = async (email: string, password: string): Promise<LoginRespo
     },
     body: JSON.stringify({ username: email, password }),
   });
-  console.log(response);
   if (!response.ok) {
     throw new Error('Login failed');
   }
-
-  return response.json();
+  const res = await response.json();
+  return {
+    token : res.token,
+    user: {id: email, email: email}
+  };
 };
 
-export const getMessages = async (userId: string, token: string): Promise<MessagesResponse> => {
+export const getMessages = async (userId: string, token: string): Promise<[]> => {
   const response = await fetch(`${API_BASE_URL}/user/${userId}/messages`, {
     headers: {
       'Authorization': `Bearer ${token}`,
     },
   });
-
   if (!response.ok) {
     throw new Error('Failed to fetch messages');
   }
