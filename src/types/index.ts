@@ -3,19 +3,19 @@ export interface User {
   email: string;
 }
 
+export interface Content {
+  text?: string;
+  html?: string;
+}
+
 export interface Message {
   id: string;
   subject: string;
   recipient: string;
-  content: string;
-  isHtml: boolean;
+  content: Content;
 }
 
 export interface LoginResponse {
   user: User;
   token: string;
 }
-
-export interface MessagesResponse {
-  messages: Message[];
-} 

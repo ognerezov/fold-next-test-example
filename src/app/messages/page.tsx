@@ -14,7 +14,23 @@ export default function MessagesPage() {
   const { user, token, logout } = useAuth();
 
   useEffect(() => {
+    // Wait for auth state to be initialized
+    if (user === null && token === null) {
+      // Check if we're still loading auth state
+      const storedUser = localStorage.getItem('user');
+      const storedToken = localStorage.getItem('token');
+      
+      if (!storedUser || !storedToken) {
+        console.log('No stored credentials found');
+        router.push('/');
+        return;
+      }
+      // If we have stored credentials, wait for AuthContext to initialize
+      return;
+    }
+
     if (!user || !token) {
+      console.log('Not authenticated');
       router.push('/');
       return;
     }
@@ -22,9 +38,10 @@ export default function MessagesPage() {
     const fetchMessages = async () => {
       try {
         const response = await getMessages(user.id, token);
-        setMessages(response.messages);
+        console.log('Messages response:', response);
+        setMessages(response);
       } catch (err) {
-        console.log(err);
+        console.log('Error fetching messages:', err);
         setError('Failed to load messages');
       } finally {
         setLoading(false);
@@ -82,13 +99,13 @@ export default function MessagesPage() {
                     </div>
                   </div>
                   <div className="mt-2">
-                    {message.isHtml ? (
+                    {message.content?.html ? (
                       <div
                         className="text-sm text-gray-500"
-                        dangerouslySetInnerHTML={{ __html: message.content }}
+                        dangerouslySetInnerHTML={{ __html: message.content.html }}
                       />
                     ) : (
-                      <p className="text-sm text-gray-500">{message.content}</p>
+                      <p className="text-sm text-gray-500">{message.content?.text || ""}</p>
                     )}
                   </div>
                 </div>
