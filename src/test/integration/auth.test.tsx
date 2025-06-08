@@ -7,7 +7,6 @@ import Messages from '@/app/messages/page'
 import { AuthProvider } from '@/context/AuthContext';
 import { MemoryRouterProvider } from "next-router-mock/MemoryRouterProvider";
 
-// Mock next/navigation
 vi.mock('next/navigation', () => ({
   useRouter: vi.fn(),
 }));
@@ -27,7 +26,6 @@ describe('Authentication and Messages Flow', () => {
       </AuthProvider>, { wrapper: MemoryRouterProvider }
     );
 
-    // Fill in login form
     const emailInput = screen.getByLabelText(/email/i);
     const passwordInput = screen.getByLabelText(/password/i);
     const loginButton = screen.getByRole('button', { name: /sign in/i });
@@ -36,7 +34,6 @@ describe('Authentication and Messages Flow', () => {
     await userEvent.type(passwordInput, 'test');
     await userEvent.click(loginButton);
 
-    // Wait for navigation to messages page
     await waitFor(() => {
       expect(mockRouter.push).toHaveBeenCalledWith('/messages');
     },{timeout:5000});
@@ -46,14 +43,12 @@ describe('Authentication and Messages Flow', () => {
           < Messages/>
         </AuthProvider>, { wrapper: MemoryRouterProvider }
     );
-    //
-    // Check for messages
+
     await waitFor(() => {
-      const messages = screen.getAllByText(/user2@email.com/i);
+      const messages = screen.getAllByText("user2@email.com");
       expect(messages).toHaveLength(2);
     },{timeout:5000});
 
-    // Check message content
     expect(screen.getByText('Hello')).toBeInTheDocument();
     expect(screen.getByText('World')).toBeInTheDocument();
   }, {timeout:15000});
