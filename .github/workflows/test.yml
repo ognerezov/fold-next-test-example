@@ -11,7 +11,7 @@ jobs:
         id: fold
         uses: ognerezov/fold-test-node@main
         with:
-          context: .
+#          context: .
           dir: '/mock'
           work_dir: '/'
           test: 'npm run test'
