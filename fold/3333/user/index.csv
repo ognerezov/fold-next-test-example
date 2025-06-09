@@ -1,0 +1,4 @@
+id,password,input_password,name
+root,$2a$14$bw8BY9vusncKiDly56PAVeSxQC0tkm1zTkk5EDtIXduGGAArg4b0G,,Root
+guest,$2a$14$tXp6yX.ScrCpoz3U4FRhjejU23o1IYn9j7qfuo7P8jPraSR3KVZAi,,Guest
+test@email.com,$2a$14$5dXaombX.YCTe.YPUNs9seTWI.918qaBxgX17r4i0lzCW9iYyg6Rm,,John Doe

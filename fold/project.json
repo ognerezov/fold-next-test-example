@@ -1,0 +1,9 @@
+{
+    "name": "fold",
+    "description": "",
+    "version": "1.0.0",
+    "allow_origin": "http://localhost:3333",
+    "auth_providers": null,
+    "jwt_secret": "efWgnFG01rcD",
+    "guest_password": "AO7SCgnG"
+}
