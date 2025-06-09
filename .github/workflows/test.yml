@@ -3,7 +3,7 @@ on: [push]
 jobs:
   integration_tests:
     runs-on: ubuntu-latest
-    name: A job to test with fold server
+    name: A job to test with mock server
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
@@ -12,6 +12,6 @@ jobs:
         uses: ognerezov/fold-test-node@main
         with:
           context: .
-          dir: '/fold'
+          dir: '/mock'
           work_dir: '/'
-          test: 'npm install && npm run test'
+          test: 'npm run test'
