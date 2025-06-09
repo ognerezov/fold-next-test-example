@@ -13,5 +13,5 @@ jobs:
         with:
           context: .
           dir: '/fold'
-          work-dir: '/'
+          work_dir: '/'
           test: 'npm install && npm run test'
