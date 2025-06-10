@@ -11,10 +11,10 @@
     {
         "id": 2,
         "content": {
-            "text": "World",
-            "html": "<div>World</div"
+            "text": "Friend",
+            "html": "<div>Friend</div"
         },
-        "recipient": "user2@email.com",
+        "recipient": "user3@email.com",
         "subject": "Re"
     }
 ]
