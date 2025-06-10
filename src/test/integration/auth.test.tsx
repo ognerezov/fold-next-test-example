@@ -31,7 +31,7 @@ describe('Authentication and Messages Flow', () => {
     const loginButton = screen.getByRole('button', { name: /sign in/i });
 
     await userEvent.type(emailInput, 'test@email.com');
-    await userEvent.type(passwordInput, 'not_test');
+    await userEvent.type(passwordInput, 'test');
     await userEvent.click(loginButton);
 
     await waitFor(() => {
@@ -45,11 +45,11 @@ describe('Authentication and Messages Flow', () => {
     );
 
     await waitFor(() => {
-      const messages = screen.getAllByText("user2@email.com");
+      const messages = screen.getAllByText("user3@email.com");
       expect(messages).toHaveLength(2);
     },{timeout:5000});
 
     expect(screen.getByText('Hello')).toBeInTheDocument();
-    expect(screen.getByText('World')).toBeInTheDocument();
+    expect(screen.getByText('Friend')).toBeInTheDocument();
   }, {timeout:15000});
 }); 
