@@ -31,7 +31,7 @@ describe('Authentication and Messages Flow', () => {
     const loginButton = screen.getByRole('button', { name: /sign in/i });
 
     await userEvent.type(emailInput, 'test@email.com');
-    await userEvent.type(passwordInput, 'test');
+    await userEvent.type(passwordInput, 'not_test');
     await userEvent.click(loginButton);
 
     await waitFor(() => {
