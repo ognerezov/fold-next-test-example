@@ -46,9 +46,9 @@ describe('Authentication and Messages Flow', () => {
 
     await waitFor(() => {
       const messages = screen.getAllByText("user2@email.com");
-      expect(messages).toHaveLength(2);
+      expect(messages).toHaveLength(1);
     },{timeout:5000});
-
+    expect(screen.getByText('user3@email.com')).toBeInTheDocument();
     expect(screen.getByText('Hello')).toBeInTheDocument();
     expect(screen.getByText('Friend')).toBeInTheDocument();
   }, {timeout:15000});
